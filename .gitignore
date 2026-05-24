@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+venv/
+.venv/
+env/
+
+# Source training data is tracked in data/*.crdownload.
+
+# Generated v2 datasets and reports
+data/augmentation_report.json
+data/synthetic_training_dataset.json
+data/instruction_tuning_dataset.json
+data/merged_dataset.jsonl
+data/training_data*.jsonl
+data/val_data*.jsonl
+data/test_data*.jsonl
+data/training_data*.csv
+data/evaluation_*.json
+data/model_test_results.json
+data/output_report.json
+data/v2_smoke_report.json
+results/
+
+# Temporary Kaggle packaging
+kaggle_cred_huunt/
+cred_huunt_kaggle.zip
+
+# LoRA model weights (large, local only)
+lora-credentials-detector/
+
+# External dependencies bundled locally
+external/
+
+# HuggingFace model cache
+models/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Progress/temp files
+*.progress
+
