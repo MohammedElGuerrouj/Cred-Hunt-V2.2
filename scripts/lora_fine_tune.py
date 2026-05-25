@@ -7,6 +7,7 @@ Uses GPU for efficient parameter-efficient fine-tuning
 import json
 import torch
 import argparse
+import sys
 from pathlib import Path
 from transformers import (
     AutoTokenizer,
@@ -118,14 +119,14 @@ def main():
     if not train_file.exists() or not val_file.exists():
         print("❌ Training/validation data not found!")
         print("   Run: python scripts/process_synthetic_training_data.py")
-        return
+        sys.exit(1)
 
     # Check GPU availability
     if args.gpu:
         if not torch.cuda.is_available():
             print("❌ GPU requested but not available!")
             print("   Install CUDA or run without --gpu flag")
-            return
+            sys.exit(1)
         device = torch.device("cuda")
         print(f"✅ GPU available: {torch.cuda.get_device_name()}")
     else:
@@ -155,7 +156,7 @@ def main():
         if args.load_4bit:
             if not args.gpu:
                 print("❌ --load-4bit requires --gpu")
-                return
+                sys.exit(1)
             quant_config = BitsAndBytesConfig(
                 load_in_4bit=True,
                 bnb_4bit_quant_type="nf4",
@@ -252,7 +253,7 @@ def main():
         print("   1. Check GPU memory: Reduce batch_size if needed")
         print("   2. Check CUDA installation: nvcc --version")
         print("   3. Try CPU training: Remove --gpu flag")
-        return
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
